@@ -1,13 +1,19 @@
-import type { Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    path: '',
+    redirectTo: 'chat',
+    pathMatch: 'full'
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
+    path: 'chat',
+    loadComponent: () =>
+      import('./pages/chat/chat.page')
+        .then(m => m.ChatPage)
   },
+  {
+    path: '**',
+    redirectTo: 'chat'
+  }
 ];
